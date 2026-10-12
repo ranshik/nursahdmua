@@ -1141,7 +1141,7 @@
                     <i data-lucide="chevron-right" style="width:18px; color: var(--primary-mute);"></i>
                 </a>
                 <a href="https://www.instagram.com/nursahd.mua" target="_blank" rel="noopener" class="contact-row">
-                    <div class="contact-icon" style="background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);"><i data-lucide="instagram" style="width:18px; color:#fff;"></i></div>
+                    <div class="contact-icon" style="background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
                     <div class="contact-text">
                         <div class="contact-label">Instagram</div>
                         <div class="contact-value">@nursahd.mua</div>
@@ -1388,10 +1388,18 @@
                 contact_title: 'Hubungi Saya',
                 stat_loyal: 'Setia',
                 btn_book: 'Pesan via WhatsApp',
-                wa_about_msg: 'Halo Kak Nursah, saya ingin bertanya mengenai layanan makeup. Apakah saat ini tersedia untuk tanggal ... ?',
+                wa_about_msg: `Halo Kak Nursah,\n\nPerkenalkan, saya ingin berkonsultasi mengenai layanan makeup yang tersedia. Mohon informasinya untuk tanggal, paket, dan estimasi biayanya.\n\nTerima kasih atas waktunya. 🙏`,
                 btn_cancel: 'Batal',
                 form_required: 'Nama &amp; tanggal wajib diisi',
                 form_booking_ok: 'Pesanan terkirim ✓',
+                form_name: 'Nama Lengkap',
+                form_service: 'Layanan',
+                form_event: 'Jenis Acara',
+                form_date: 'Tanggal Acara',
+                form_location: 'Lokasi Acara',
+                form_travel: 'Butuh Akomodasi Perjalanan?',
+                form_whatsapp: 'No. WhatsApp',
+                form_notes: 'Catatan',
                 loader_welcome: 'Selamat Datang di',
                 loader_tagline: 'Mempersiapkan kecantikan Anda...',
                 theme_noir: 'Noir',
@@ -1399,23 +1407,23 @@
                 theme_kain_merah: 'Kain Merah',
                 theme_danau: 'Danau',
                 theme_riau: 'Riau',
-                wa_msg: (d) => `💄✨ *BOOKING BARU — NURSAH MUA* ✨💄\n` +
-`━━━━━━━━━━━━━━━━━━━\n` +
+                wa_msg: (d) => `💄 *BOOKING BARU — NURSAH MUA*\n` +
+`\n` +
 `Halo Kak Nursah! 🌸\n` +
-`Saya ingin melakukan booking untuk sesi makeup. 💕\n` +
+`Saya ingin melakukan booking untuk sesi makeup.\n` +
 `\n` +
-`👤 *Nama*  : ${d.name}\n` +
-`📞 *WhatsApp* : ${d.wa || '-'}\n` +
-`✨ *Layanan*  : ${d.service}\n` +
-`🎉 *Acara*    : ${d.event}\n` +
-`📅 *Tanggal*  : ${d.date}\n` +
-`📍 *Lokasi*   : ${d.location}\n` +
-`✈️ *Perjalanan* : ${d.travel}\n` +
+`👤 Nama        : ${d.name}\n` +
+`📞 WhatsApp  : ${d.wa || '-'}\n` +
+`✨ Layanan    : ${d.service}\n` +
+`🎉 Acara        : ${d.event}\n` +
+`📅 Tanggal    : ${d.date}\n` +
+`📍 Lokasi       : ${d.location}\n` +
+`✈️ Perjalanan : ${d.travel}\n` +
 `\n` +
-`${d.notes ? '📝 *Catatan*  :\n' + d.notes + '\n' : ''}` +
-`━━━━━━━━━━━━━━━━━━━\n` +
+`${d.notes ? '📝 Catatan:\n' + d.notes + '\n\n' : ''}` +
 `Mohon konfirmasinya ya Kak, terima kasih banyak! 🙏\n` +
-`🌹 _Dikirim dari website Nursah MUA_`
+`\n` +
+`_Dikirim dari website Nursah MUA_`
             },
             en: {
                 settings_title: 'Settings',
@@ -1458,10 +1466,18 @@
                 contact_title: 'Contact Me',
                 stat_loyal: 'Loyal',
                 btn_book: 'Book via WhatsApp',
-                wa_about_msg: "Hi Nursah, I'd like to enquire about your makeup services. Are you available on ... ?",
+                wa_about_msg: `Hello Nursah,\n\nI would like to enquire about your makeup services. Could you please share your availability, package options, and pricing for my event?\n\nThank you for your time. 🙏`,
                 btn_cancel: 'Cancel',
                 form_required: 'Name &amp; date required',
                 form_booking_ok: 'Booking sent ✓',
+                form_name: 'Full Name',
+                form_service: 'Service',
+                form_event: 'Event Type',
+                form_date: 'Event Date',
+                form_location: 'Event Location',
+                form_travel: 'Need Travel Accommodation?',
+                form_whatsapp: 'WhatsApp Number',
+                form_notes: 'Notes',
                 loader_welcome: 'Welcome to',
                 loader_tagline: 'Preparing your beauty experience...',
                 theme_noir: 'Noir',
@@ -1469,23 +1485,23 @@
                 theme_kain_merah: 'Red Cloth',
                 theme_danau: 'Lake',
                 theme_riau: 'Riau',
-                wa_msg: (d) => `💄✨ *NEW BOOKING — NURSAH MUA* ✨💄\n` +
-`━━━━━━━━━━━━━━━━━━━\n` +
+                wa_msg: (d) => `💄 *NEW BOOKING — NURSAH MUA*\n` +
+`\n` +
 `Hi Nursah! 🌸\n` +
-`I'd love to book a makeup session. 💕\n` +
+`I'd love to book a makeup session.\n` +
 `\n` +
-`👤 *Name*  : ${d.name}\n` +
-`📞 *WhatsApp* : ${d.wa || '-'}\n` +
-`✨ *Service*  : ${d.service}\n` +
-`🎉 *Event*    : ${d.event}\n` +
-`📅 *Date*  : ${d.date}\n` +
-`📍 *Location* : ${d.location}\n` +
-`✈️ *Travel* : ${d.travel}\n` +
+`👤 Name        : ${d.name}\n` +
+`📞 WhatsApp  : ${d.wa || '-'}\n` +
+`✨ Service    : ${d.service}\n` +
+`🎉 Event        : ${d.event}\n` +
+`📅 Date          : ${d.date}\n` +
+`📍 Location  : ${d.location}\n` +
+`✈️ Travel       : ${d.travel}\n` +
 `\n` +
-`${d.notes ? '📝 *Notes*  :\n' + d.notes + '\n' : ''}` +
-`━━━━━━━━━━━━━━━━━━━\n` +
+`${d.notes ? '📝 Notes:\n' + d.notes + '\n\n' : ''}` +
 `Please confirm when you can — thank you so much! 🙏\n` +
-`🌹 _Sent from the Nursah MUA website_`
+`\n` +
+`_Sent from the Nursah MUA website_`
             }
         };
 
@@ -1812,5 +1828,6 @@
     </script>
 </body>
 </html>
+
 
 
