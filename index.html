@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NURSAH | Makeup Artist</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23d4526a'/%3E%3Cstop offset='1' stop-color='%23e8a87c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='38' font-weight='800' fill='%23fff'%3EN%3C/text%3E%3C/svg%3E">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Cairo:wght@300;400;600;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg: #1a0a10;
+            --bg-2: #261218;
+            --surface: rgba(38, 18, 24, 0.7);
+            --accent: #d4526a;
+            --accent-2: #e8a87c;
+            --accent-soft: #f4c2c2;
+            --accent-glow: rgba(212, 82, 106, 0.22);
+            --primary: #fbeae6;
+            --primary-soft: rgba(251, 234, 230, 0.7);
+            --primary-mute: rgba(251, 234, 230, 0.5);
+            --border: rgba(212, 82, 106, 0.22);
+            --border-strong: rgba(212, 82, 106, 0.38);
+            --shadow: rgba(0, 0, 0, 0.6);
+            --glass: blur(20px) saturate(180%);
+            --serif: 'Playfair Display', serif;
+            --sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        [data-theme="light"] {
+            --bg: #fdf2ee;
+            --bg-2: #f5e2d8;
+            --surface: rgba(255, 255, 255, 0.78);
+            --accent: #b8394a;
+            --accent-2: #d4825a;
+            --accent-soft: #e8a0a0;
+            --accent-glow: rgba(184, 57, 74, 0.14);
+            --primary: #2a1014;
+            --primary-soft: rgba(42, 16, 20, 0.75);
+            --primary-mute: rgba(42, 16, 20, 0.55);
+            --border: rgba(184, 57, 74, 0.2);
+            --border-strong: rgba(184, 57, 74, 0.38);
+            --shadow: rgba(120, 30, 40, 0.08);
+        }
+
+        [data-theme="kain-merah"] {
+            --bg: #1f0a0d;
+            --bg-2: #2c0e12;
+            --surface: rgba(44, 14, 18, 0.75);
+            --accent: #c8324a;
+            --accent-2: #e0a548;
+            --accent-soft: #ff6b7e;
+            --accent-glow: rgba(200, 50, 74, 0.22);
+            --primary: #fbe6e8;
+            --primary-soft: rgba(251, 230, 232, 0.7);
+            --primary-mute: rgba(251, 230, 232, 0.5);
+            --border: rgba(200, 50, 74, 0.25);
+            --border-strong: rgba(200, 50, 74, 0.4);
+            --shadow: rgba(0, 0, 0, 0.6);
+        }
+
+        [data-theme="danau"] {
+            --bg: #0a1218;
+            --bg-2: #0e1a22;
+            --surface: rgba(14, 26, 34, 0.7);
+            --accent: #4a9eb8;
+            --accent-2: #7ec3d4;
+            --accent-soft: #a8dbe7;
+            --accent-glow: rgba(74, 158, 184, 0.18);
+            --primary: #e8f0f3;
+            --primary-soft: rgba(232, 240, 243, 0.7);
+            --primary-mute: rgba(232, 240, 243, 0.5);
+            --border: rgba(74, 158, 184, 0.2);
+            --border-strong: rgba(74, 158, 184, 0.35);
+            --shadow: rgba(0, 0, 0, 0.6);
+        }
+
+        [data-theme="hijau"] {
+            --bg: #0a1810;
+            --bg-2: #0e2218;
+            --surface: rgba(14, 34, 24, 0.7);
+            --accent: #6ab04a;
+            --accent-2: #a0c878;
+            --accent-soft: #c8e8a8;
+            --accent-glow: rgba(106, 176, 74, 0.18);
+            --primary: #e8f0e0;
+            --primary-soft: rgba(232, 240, 224, 0.7);
+            --primary-mute: rgba(232, 240, 224, 0.5);
+            --border: rgba(106, 176, 74, 0.2);
+            --border-strong: rgba(106, 176, 74, 0.35);
+            --shadow: rgba(0, 0, 0, 0.6);
+        }
+
+        [dir="rtl"] { font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif; }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: var(--sans);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--primary);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse at top left, var(--accent-glow), transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(232, 168, 124, 0.08), transparent 50%);
+            min-height: 100vh;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: color-mix(in srgb, var(--bg) 60%, transparent);
+            backdrop-filter: var(--glass);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.4s, border-color 0.4s;
+        }
+
+        .header-actions {
+            display: flex; align-items: center; gap: 14px;
+        }
+
+        .icon-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+        .icon-btn:active { transform: scale(0.92); }
+
+        .brand {
+            font-family: var(--serif);
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tab-bar {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 420px; height: 68px;
+            display: flex; justify-content: space-around; align-items: center;
+            border-radius: 100px; z-index: 1000;
+            background: color-mix(in srgb, var(--bg-2) 85%, transparent);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .tab-item {
+            display: flex; flex-direction: column; align-items: center;
+            cursor: pointer; opacity: 0.4; transition: 0.3s;
+            color: var(--primary);
+        }
+        .tab-item.active { opacity: 1; color: var(--accent); }
+        .tab-item span {
+            font-size: 9px; font-weight: 800; text-transform: uppercase;
+            margin-top: 4px; letter-spacing: 1px;
+        }
+
+        /* --- PAGE CONTENT --- */
+        .page {
+            display: none; padding-top: 80px; min-height: 100vh;
+            flex-direction: column;
+        }
+        .active-page { display: flex; }
+
+        .container {
+            padding: 20px 5% 120px; flex: 1;
+        }
+
+        /* PAGE TRANSITION */
+        .page { animation: fadeIn 0.4s cubic-bezier(0.32, 0.72, 0, 1); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* BENTO HOME */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 160px;
+            gap: 14px;
+        }
+        .bento-item {
+            border-radius: 28px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .bento-item:active { transform: scale(0.98); }
+
+        .hero-portrait {
+            grid-column: span 4; grid-row: span 3;
+            background:
+                linear-gradient(to top, rgba(10, 6, 6, 0.95) 0%, rgba(10, 6, 6, 0.3) 50%, transparent 80%),
+                url('./img/main/main.jpeg') center/cover;
+        }
+
+        .hero-portrait .overlay {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 28px;
+        }
+
+        .hero-portrait .tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--accent); font-weight: 800; font-size: 10px;
+            letter-spacing: 3px; text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .hero-portrait .tag::before {
+            content: ''; width: 24px; height: 1px; background: var(--accent);
+        }
+
+        .hero-portrait h1 {
+            font-family: var(--serif);
+            font-size: 3.2rem; line-height: 0.95;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .hero-portrait .sub {
+            color: rgba(245, 235, 232, 0.7);
+            font-size: 13px; font-weight: 400;
+            margin-top: 8px; max-width: 320px;
+        }
+
+        .hero-services {
+            grid-column: span 2; grid-row: span 2;
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            padding: 24px;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .hero-services .label {
+            font-size: 9px; font-weight: 800; opacity: 0.5;
+            letter-spacing: 3px; text-transform: uppercase;
+        }
+        .hero-services .stat-num {
+            font-family: var(--serif);
+            font-size: 3rem; font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .hero-services .stat-text {
+            font-size: 11px; font-weight: 600; opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .hero-luxe {
+            grid-column: span 2; grid-row: span 2;
+            background:
+                linear-gradient(135deg, color-mix(in srgb, var(--accent) 40%, transparent), color-mix(in srgb, var(--bg-2) 60%, transparent)),
+                url('https://images.unsplash.com/photo-1522335789203-aaa0a4a1f0a4?w=800') center/cover;
+        }
+        .hero-luxe .overlay {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 24px;
+        }
+        .hero-luxe h3 {
+            font-family: var(--serif);
+            font-size: 1.5rem; line-height: 1;
+        }
+        .hero-luxe p {
+            font-size: 10px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-top: 4px;
+        }
+
+        /* SECTION TITLES */
+        .section-title {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 40px 0 20px;
+        }
+        .section-title span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        /* SERVICES LIST */
+        .service-list {
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .service-card {
+            display: flex; align-items: center; gap: 16px;
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .service-card:hover { border-color: var(--accent); }
+        .service-icon {
+            width: 52px; height: 52px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(201, 160, 122, 0.2), rgba(201, 160, 122, 0.05));
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .service-info { flex: 1; }
+        .service-info h4 {
+            font-size: 14px; font-weight: 800; margin-bottom: 2px;
+        }
+        .service-info p {
+            font-size: 11px; opacity: 0.6; font-weight: 400;
+        }
+        .service-price {
+            text-align: right;
+        }
+        .service-price .from {
+            font-size: 8px; opacity: 0.5;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+        .service-price .amount {
+            font-family: var(--serif);
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* PORTFOLIO GRID */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .portfolio-item {
+            aspect-ratio: 3/4;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .portfolio-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .portfolio-item:hover img { transform: scale(1.05); }
+        .portfolio-item .look-tag {
+            position: absolute; bottom: 12px; left: 12px;
+            background: rgba(10, 6, 6, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 9px; font-weight: 800;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            border: 1px solid var(--border);
+        }
+
+        /* BOOKING */
+        .booking-form {
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 24px;
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 9px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: color-mix(in srgb, var(--bg) 30%, transparent);
+            border: 1px solid var(--border);
+            padding: 14px 16px;
+            border-radius: 14px;
+            color: var(--primary);
+            font-size: 13px;
+            font-family: var(--sans);
+            outline: none;
+            transition: 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--accent); }
+        .form-group select { appearance: none; cursor: pointer; }
+        .form-group textarea { resize: none; height: 80px; }
+
+        .btn-main {
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: #0a0606; border: none;
+            padding: 16px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-main:active { transform: scale(0.98); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 14px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* TESTIMONIALS */
+        .testimonial-card {
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 12px;
+        }
+        .testimonial-card .stars {
+            color: var(--accent);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .testimonial-card p {
+            font-size: 13px; line-height: 1.6;
+            font-style: italic;
+            opacity: 0.85;
+            margin-bottom: 14px;
+        }
+        .testimonial-card .author {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .testimonial-card .avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #8a5a3a);
+            display: flex; align-items: center; justify-content: center;
+            color: #0a0606; font-weight: 800; font-size: 13px;
+        }
+        .testimonial-card .name {
+            font-size: 12px; font-weight: 800;
+        }
+        .testimonial-card .role {
+            font-size: 10px; opacity: 0.5;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px 5% 120px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+        .social-row {
+            display: flex; justify-content: center; gap: 12px;
+            margin-bottom: 20px;
+        }
+        .social-btn {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .social-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        .contact-row {
+            display: flex; align-items: center; gap: 14px;
+            padding: 14px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--primary);
+            transition: 0.3s;
+            backdrop-filter: var(--glass);
+        }
+        .contact-row:hover { border-color: var(--accent); transform: translateY(-1px); }
+        .contact-row:active { transform: scale(0.99); }
+        .contact-icon {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+        .contact-text { flex: 1; min-width: 0; text-align: left; }
+        .contact-label {
+            font-size: 10px; font-weight: 800;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--primary-mute);
+        }
+        .contact-value {
+            font-size: 13px; font-weight: 700;
+            margin-top: 2px;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+
+        .copyright {
+            font-size: 10px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 3px;
+            color: #555;
+        }
+
+        /* BOTTOM SHEET */
+        #service-sheet {
+            position: fixed; bottom: -100%; left: 0; width: 100%; height: 75vh;
+            background: rgba(15, 10, 10, 0.97);
+            backdrop-filter: blur(30px);
+            border-top: 1px solid var(--border);
+            border-radius: 40px 40px 0 0;
+            z-index: 2001;
+            transition: 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+            padding: 40px 5%;
+            overflow-y: auto;
+        }
+        #service-sheet.active { bottom: 0; }
+
+        .hidden { display: none !important; }
+
+        /* SETTINGS PANEL */
+        #settings-panel {
+            position: fixed; inset: 0;
+            background: color-mix(in srgb, var(--bg) 75%, transparent);
+            backdrop-filter: blur(20px);
+            z-index: 3000;
+            display: none;
+            align-items: flex-end;
+            animation: fadeIn 0.3s;
+        }
+        #settings-panel.active { display: flex; }
+        #settings-panel .sheet {
+            width: 100%; max-width: 480px; margin: 0 auto;
+            background: var(--bg-2);
+            border-top: 1px solid var(--border);
+            border-radius: 32px 32px 0 0;
+            padding: 24px 5% 40px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .setting-group { margin-bottom: 24px; }
+        .setting-group h3 {
+            font-size: 10px; font-weight: 800;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--primary-mute);
+            margin-bottom: 12px;
+        }
+        .theme-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+        }
+        .theme-chip {
+            padding: 14px 12px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+        }
+        .theme-chip.active { border-color: var(--accent); }
+        .theme-chip .swatch {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--border-strong);
+        }
+        .theme-chip[data-theme="dark"] .swatch {
+            background: linear-gradient(135deg, #1a0a10, #d4526a);
+        }
+        .theme-chip[data-theme="light"] .swatch {
+            background: linear-gradient(135deg, #fdf2ee, #d4526a);
+        }
+        .theme-chip[data-theme="rose"] .swatch {
+            background: linear-gradient(135deg, #1a0a10, #d4a5a5);
+        }
+        .theme-chip[data-theme="kain-merah"] .swatch {
+            background: linear-gradient(135deg, #1f0a0d, #e0a548);
+        }
+        .theme-chip[data-theme="danau"] .swatch {
+            background: linear-gradient(135deg, #0a1218, #4a9eb8);
+        }
+        .theme-chip[data-theme="hijau"] .swatch {
+            background: linear-gradient(135deg, #0a1810, #6ab04a);
+        }
+        .theme-chip .name {
+            font-size: 10px; font-weight: 800;
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        .option-row {
+            display: flex; gap: 8px; flex-wrap: wrap;
+        }
+        .option-pill {
+            padding: 10px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 12px; font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .option-pill.active {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .lang-pill {
+            color: var(--primary-mute);
+        }
+        .lang-pill.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* --- LOADER (intro for new visitors) --- */
+        #loader {
+            position: fixed; inset: 0; z-index: 9999;
+            background: var(--bg);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        .loader-logo {
+            width: 84px; height: 84px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif); font-size: 38px; font-weight: 800;
+            color: #fff;
+            box-shadow: 0 12px 40px var(--accent-glow);
+            animation: pulse 1.6s ease-in-out infinite;
+            margin-bottom: 22px;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 12px 40px var(--accent-glow); }
+            50% { transform: scale(1.06); box-shadow: 0 12px 60px var(--accent-glow); }
+        }
+        .loader-brand {
+            font-family: var(--serif);
+            font-size: 2rem; font-weight: 800;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+        .loader-welcome {
+            font-size: 12px; font-weight: 600;
+            color: var(--primary-mute);
+            letter-spacing: 3px; text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .loader-bar {
+            width: 180px; height: 2px;
+            background: var(--border);
+            border-radius: 2px; overflow: hidden;
+            position: relative;
+        }
+        .loader-bar::after {
+            content: '';
+            position: absolute; top: 0; left: 0; bottom: 0;
+            width: 40%;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: loadSlide 1.4s ease-in-out infinite;
+        }
+        @keyframes loadSlide {
+            0% { left: -40%; }
+            100% { left: 100%; }
+        }
+        .loader-tagline {
+            font-size: 11px; font-weight: 600;
+            color: var(--primary-mute);
+            letter-spacing: 1.5px; text-transform: uppercase;
+            margin-top: 18px;
+        }
+
+        .setting-toggle {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .setting-toggle:last-child { border-bottom: none; }
+        .toggle-info .label { font-size: 13px; font-weight: 700; }
+        .toggle-info .desc { font-size: 11px; color: var(--primary-mute); margin-top: 2px; }
+        .switch {
+            position: relative;
+            width: 44px; height: 24px;
+            background: var(--bg);
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .switch::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px;
+            width: 18px; height: 18px;
+            background: var(--primary);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .switch.on { background: var(--accent); }
+        .switch.on::after { left: 22px; background: var(--bg); }
+
+        /* SEARCH BAR */
+        .search-bar {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            background: var(--surface);
+            backdrop-filter: var(--glass);
+            border: 1px solid var(--border);
+            padding: 14px 16px 14px 44px;
+            border-radius: 100px;
+            color: var(--primary);
+            font-size: 13px;
+            font-family: var(--sans);
+            outline: none;
+            transition: 0.3s;
+        }
+        .search-bar input:focus { border-color: var(--accent); }
+        .search-bar .search-icon {
+            position: absolute;
+            left: 16px; top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-mute);
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 4000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        #lightbox.active { display: flex; }
+        #lightbox img {
+            max-width: 95%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+        }
+        #lightbox .lightbox-controls {
+            margin-top: 20px;
+            display: flex; gap: 12px; align-items: center;
+        }
+        #lightbox .lightbox-tag {
+            color: var(--primary);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+        #lightbox .lightbox-close,
+        #lightbox .lightbox-nav {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        #lightbox .lightbox-close { position: absolute; top: 20px; right: 20px; }
+
+        /* FAVORITE BUTTON */
+        .fav-btn {
+            position: absolute;
+            top: 12px; right: 12px;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--bg) 60%, transparent);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            cursor: pointer;
+            z-index: 2;
+            transition: 0.3s;
+        }
+        .fav-btn.active { color: #ff4d6d; border-color: #ff4d6d; }
+        .fav-btn:active { transform: scale(0.9); }
+
+        /* TOAST */
+        #toast {
+            position: fixed;
+            top: 90px; left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: var(--accent);
+            color: var(--bg);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 5000;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* BACK TO TOP */
+        #back-top {
+            position: fixed;
+            bottom: 105px; right: 20px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--bg);
+            display: none;
+            align-items: center; justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 8px 20px var(--shadow);
+            transition: 0.3s;
+        }
+        #back-top.visible { display: flex; }
+        #back-top:active { transform: scale(0.9); }
+
+        /* RTL FIXES */
+        [dir="rtl"] .search-bar input { padding: 14px 44px 14px 16px; }
+        [dir="rtl"] .search-bar .search-icon { left: auto; right: 16px; }
+        [dir="rtl"] .fav-btn { right: auto; left: 12px; }
+        [dir="rtl"] #lightbox .lightbox-close { right: auto; left: 20px; }
+
+        @media (min-width: 768px) {
+            .hero-portrait { grid-column: span 3; grid-row: span 3; }
+            .hero-services { grid-column: span 1; grid-row: span 2; }
+            .hero-luxe { grid-column: span 2; grid-row: span 2; }
+            .portfolio-grid { grid-template-columns: repeat(4, 1fr); }
+            .bento-grid { grid-auto-rows: 200px; }
+            .hero-portrait h1 { font-size: 4.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader" data-i18n-loader>
+        <div class="loader-logo">N</div>
+        <div class="loader-brand">NURSAH</div>
+        <div class="loader-welcome" data-i18n="loader_welcome">Selamat Datang di</div>
+        <div class="loader-bar"></div>
+        <div class="loader-tagline" data-i18n="loader_tagline">Mempersiapkan kecantikan Anda...</div>
+    </div>
+
+    <header>
+        <div class="brand" onclick="showPage('home')" style="display:flex; align-items:center; gap:10px;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display:flex; align-items:center; justify-content:center; font-family: var(--serif); font-size: 14px; color: #fff; -webkit-text-fill-color: #fff; flex-shrink:0; box-shadow: 0 4px 12px var(--accent-glow);">N</div>
+            <span>NURSAH</span>
+        </div>
+        <div class="header-actions">
+            <div class="icon-btn" onclick="openSettings()" title="Settings">
+                <i data-lucide="settings-2" style="width:18px;"></i>
+            </div>
+            <div class="icon-btn" onclick="toggleBooking()" title="Book">
+                <i data-lucide="calendar-check" style="width:18px;"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="tab-bar">
+        <div class="tab-item active" id="tab-home" onclick="showPage('home')">
+            <i data-lucide="home"></i><span>Home</span>
+        </div>
+        <div class="tab-item" id="tab-services" onclick="showPage('services')">
+            <i data-lucide="sparkles"></i><span>Services</span>
+        </div>
+        <div class="tab-item" id="tab-products" onclick="showPage('products')">
+            <i data-lucide="shopping-bag"></i><span>Products</span>
+        </div>
+        <div class="tab-item" id="tab-portfolio" onclick="showPage('portfolio')">
+            <i data-lucide="image"></i><span>Portfolio</span>
+        </div>
+        <div class="tab-item" id="tab-about" onclick="showPage('about')">
+            <i data-lucide="heart"></i><span>About</span>
+        </div>
+    </div>
+
+    <!-- HOME -->
+    <main id="page-home" class="page active-page">
+        <div class="container">
+            <div class="bento-grid">
+                <div class="bento-item hero-portrait">
+                    <div class="overlay">
+                        <div class="tag" data-i18n="hero_tag">Pengantin · Editorial · Kecantikan</div>
+                        <h1>Nursah</h1>
+                        <p class="sub" data-i18n="hero_sub">Menghadirkan wajah memesona untuk momen terpenting dalam hidup. Berbasis di Jambi, siap meluncur ke seluruh Indonesia &amp; luar negeri.</p>
+                    </div>
+                </div>
+
+                <div class="bento-item hero-services">
+                    <div>
+                        <div class="label" data-i18n="stat_exp">Pengalaman</div>
+                        <div class="stat-num">3+</div>
+                        <div class="stat-text" data-i18n="stat_exp_sub">Tahun berkarya</div>
+                    </div>
+                    <div>
+                        <div class="label" data-i18n="stat_brides">Pengantin</div>
+                        <div class="stat-num">150+</div>
+                    </div>
+                </div>
+
+                <div class="bento-item hero-luxe" onclick="showPage('services')">
+                    <div class="overlay">
+                        <h3 data-i18n="hero_luxe_title">Layanan Unggulan</h3>
+                        <p data-i18n="hero_luxe_sub">Lihat Menu</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" data-i18n="featured_title">Tampilan <span>Unggulan</span></h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" onclick="showPage('portfolio')">
+                    <img src="./img/featured/featured-bride.jpeg?w=600" loading="lazy">
+                    <div class="look-tag">Pengantin</div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('portfolio')">
+                    <img src="./img/featured/featured-pre-wedding.jpeg?w=600" loading="lazy">
+                    <div class="look-tag">Glam</div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('portfolio')">
+                    <img src="./img/featured/featured-practice.jpeg?w=600" loading="lazy">
+                    <div class="look-tag">Soft</div>
+                </div>
+                <div class="portfolio-item" onclick="showPage('portfolio')">
+                    <img src="./img/featured/featured-graduation.jpeg?w=600" loading="lazy">
+                    <div class="look-tag">Editorial</div>
+                </div>
+            </div>
+
+            <h2 class="section-title" data-i18n="reviews_title">Kata <span>Mereka</span></h2>
+            <div class="testimonial-card">
+                <div class="stars">★ ★ ★ ★ ★</div>
+                <p>"kakaaa thank u so much buat kemarin , kami puas nn sm make up nyo , tahan pula ampe sore , sblm nya mohon maaf ya kak kalau ada salah kata atau perbuatan dr keluarga atau pun kami , dan maaf juga kak kalau ada penyambutan yang krg baik dr kami , maacii banyak kakaaa🥺❤️"</p>
+                <div class="author">
+                    <div class="avatar">A</div>
+                    <div>
+                        <div class="name">Putri.</div>
+                        <div class="role">Akad Resepsi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★ ★ ★ ★ ★</div>
+                <p>"Adek" Liat hasilnya langsung pada bilng ini make up nya keren cantik bgt mana tahan kena air ga luntur wisuda pada keep"</p>
+                <div class="author">
+                    <div class="avatar">L</div>
+                    <div>
+                        <div class="name">Gita.</div>
+                        <div class="role">Engagement</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★ ★ ★ ★ ★</div>
+                <p>"Oh y lupa kasih tau, semua yg lihat secara langsung maupun d sosmed bilang cantik, makasih ya dek udah buat cantik kemarin, maaf jg kalo cerewet 😘"</p>
+                <div class="author">
+                    <div class="avatar">L</div>
+                    <div>
+                        <div class="name">Riska.</div>
+                        <div class="role">Engagement</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★ ★ ★ ★ ★</div>
+                <p>"Assalamualaikum ka nurr maaf yaa belum sempat bilang makasih kemarin juga ga ketemu kk setelah habis ganti bajuu ,makasii banyak ka nur untuk make up nya makasih juga udah di buat pangling yuuppp cantik bgt hasil nyaa❤️❤️ lancar terus ya job kaka aamiin"</p>
+                <div class="author">
+                    <div class="avatar">L</div>
+                    <div>
+                        <div class="name">Jessica.</div>
+                        <div class="role">Akad Resepsi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★ ★ ★ ★ ★</div>
+                <p>"kakakk, makacii yaa sdh bikin gita cantik di hrii special gitaaa... maaf bgt gita bru bsa kirim2nya skrgg, soalnya kmrn gita langsung plg ke baharr"</p>
+                <p>"sekali lagii makasih banyakk yaa kak, lancarr selaluu pokonyaa yahh..."</p>
+                <div class="author">
+                    <div class="avatar">L</div>
+                    <div>
+                        <div class="name">Gita.</div>
+                        <div class="role">Graduation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="copyright">© 2026 NURSAH MUA · JAMBI</p>
+        </footer>
+    </main>
+
+    <!-- SERVICES -->
+    <main id="page-services" class="page">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;">
+                <h2 class="section-title" data-i18n="services_title">Layanan <span>Kami</span></h2>
+                <div class="lang-toggle" style="display: flex; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 4px;">
+                    <div class="lang-pill active" data-lang="id" onclick="setLanguage('id')" style="padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; cursor: pointer; transition: 0.3s; letter-spacing: 0.5px;">ID</div>
+                    <div class="lang-pill" data-lang="en" onclick="setLanguage('en')" style="padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 700; cursor: pointer; transition: 0.3s; letter-spacing: 0.5px;">EN</div>
+                </div>
+            </div>
+            <p style="font-size: 13px; opacity: 0.6; margin-bottom: 20px; line-height: 1.6;" data-i18n="services_sub">Setiap sesi dimulai dengan konsultasi &amp; analisis kulit untuk hasil terbaik sesuai kebutuhan Anda.</p>
+
+            <div class="search-bar">
+                <i data-lucide="search" class="search-icon" style="width:16px;"></i>
+                <input type="text" id="service-search" placeholder="Cari layanan..." oninput="filterServices()">
+            </div>
+
+            <div class="service-list" id="service-list"></div>
+        </div>
+        <footer><p class="copyright">© 2026 NURSAH MUA · JAMBI</p></footer>
+    </main>
+
+    <!-- PRODUCTS -->
+    <main id="page-products" class="page">
+        <div class="container" style="text-align: center; padding-top: 80px;">
+            <div style="width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 32px; background: linear-gradient(135deg, var(--accent-glow), transparent); border: 2px solid var(--border-strong); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px var(--accent-glow);">
+                <i data-lucide="hourglass" style="width: 56px; height: 56px; color: var(--accent);"></i>
+            </div>
+            <h2 class="section-title" style="margin-bottom: 18px;" data-i18n="products_title">Produk <span>Kami</span></h2>
+            <div style="display: inline-block; padding: 12px 32px; background: var(--accent); color: #fff; border-radius: 100px; font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px;" data-i18n="products_coming_soon">Coming Soon</div>
+            <p style="font-size: 14px; opacity: 0.75; line-height: 1.8; max-width: 360px; margin: 0 auto;" data-i18n="products_desc">Koleksi produk makeup &amp; skincare pilihan segera hadir. Nantikan penawaran eksklusif dari Nursah MUA.</p>
+        </div>
+        <footer><p class="copyright">© 2026 NURSAH MUA · JAMBI</p></footer>
+    </main>
+
+    <!-- PORTFOLIO -->
+    <main id="page-portfolio" class="page">
+        <div class="container">
+            <h2 class="section-title" style="margin-top: 10px;" data-i18n="gallery_title">Galeri <span>Kami</span></h2>
+            <p style="font-size: 13px; opacity: 0.6; margin-bottom: 24px;" data-i18n="gallery_sub">Koleksi riasan pengantin, editorial, &amp; kecantikan.</p>
+            <div class="portfolio-grid" id="portfolio-grid"></div>
+        </div>
+        <footer><p class="copyright">© 2026 NURSAH MUA · JAMBI</p></footer>
+    </main>
+
+    <!-- ABOUT -->
+    <main id="page-about" class="page">
+        <div class="container" style="text-align: center; padding-top: 30px;">
+            <div style="width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 24px; background: url('./img/about/profile.jpeg') center/cover; border: 2px solid var(--accent); box-shadow: 0 10px 40px var(--accent-glow);"></div>
+            <h1 style="font-family: var(--serif); font-size: 2.5rem; font-weight: 800;">Nursah</h1>
+            <p style="color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-top: 6px;" data-i18n="about_role">MUA Utama &amp; Pendiri</p>
+            <p style="color: var(--primary-soft); margin-top: 20px; max-width: 480px; margin-inline: auto; line-height: 1.7; font-size: 13px;" data-i18n="about_bio">
+                Berasal dari Jambi, Sumatera. Terlatih di Jakarta &amp; Kuala Lumpur. Filosofi kami sederhana: mempercantik, bukan menutupi. Setiap riasan dirancang khusus untuk fitur, kulit, &amp; momen Anda.
+            </p>
+
+            <div style="margin-top: 24px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px;">
+                <i data-lucide="map-pin" style="width:14px; color: var(--accent);"></i>
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;" data-i18n="travel_badge">Berbasis di Jambi</span>
+            </div>
+
+            <div style="margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 420px; margin-inline: auto;">
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 16px;">
+                    <div style="font-family: var(--serif); font-size: 1.6rem; color: var(--accent);">150+</div>
+                    <div style="font-size: 9px; opacity: 0.6; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;" data-i18n="stat_brides_short">Pengantin</div>
+                </div>
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 16px;">
+                    <div style="font-family: var(--serif); font-size: 1.6rem; color: var(--accent);">3+</div>
+                    <div style="font-size: 9px; opacity: 0.6; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;" data-i18n="stat_exp_sub">Tahun</div>
+                </div>
+                <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 16px;">
+                    <div style="font-family: var(--serif); font-size: 1.6rem; color: var(--accent);">100%</div>
+                    <div style="font-size: 9px; opacity: 0.6; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;" data-i18n="stat_loyal">Setia</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 36px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--primary-mute);" data-i18n="contact_title">Hubungi Saya</h3>
+
+            <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px; max-width: 420px; margin-inline: auto; text-align: left;">
+                <a href="mailto:nursah.mua@gmail.com" class="contact-row">
+                    <div class="contact-icon" style="background: linear-gradient(135deg, #d4526a, #e8a87c);"><i data-lucide="mail" style="width:18px; color:#fff;"></i></div>
+                    <div class="contact-text">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">nursah.mua@gmail.com</div>
+                    </div>
+                    <i data-lucide="chevron-right" style="width:18px; color: var(--primary-mute);"></i>
+                </a>
+                <a href="https://instagram.com/nursah.mua" target="_blank" rel="noopener" class="contact-row">
+                    <div class="contact-icon" style="background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);"><i data-lucide="instagram" style="width:18px; color:#fff;"></i></div>
+                    <div class="contact-text">
+                        <div class="contact-label">Instagram</div>
+                        <div class="contact-value">@nursah.mua</div>
+                    </div>
+                    <i data-lucide="chevron-right" style="width:18px; color: var(--primary-mute);"></i>
+                </a>
+                <a id="about-wa-link" href="https://wa.me/6289624391266" target="_blank" rel="noopener" class="contact-row">
+                    <div class="contact-icon" style="background: linear-gradient(135deg, #25d366, #128c7e);"><i data-lucide="message-circle" style="width:18px; color:#fff;"></i></div>
+                    <div class="contact-text">
+                        <div class="contact-label">WhatsApp</div>
+                        <div class="contact-value">+62 896-2439-1266</div>
+                    </div>
+                    <i data-lucide="chevron-right" style="width:18px; color: var(--primary-mute);"></i>
+                </a>
+                <a href="https://tiktok.com/@nursah.mua" target="_blank" rel="noopener" class="contact-row">
+                    <div class="contact-icon" style="background: linear-gradient(135deg, #000000, #25f4ee);"><i data-lucide="music-2" style="width:18px; color:#fff;"></i></div>
+                    <div class="contact-text">
+                        <div class="contact-label">TikTok</div>
+                        <div class="contact-value">@nursah.mua</div>
+                    </div>
+                    <i data-lucide="chevron-right" style="width:18px; color: var(--primary-mute);"></i>
+                </a>
+            </div>
+
+            <h3 style="margin-top: 36px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--primary-mute);" data-i18n="areas_title">Area Layanan</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; max-width: 480px; margin-inline: auto;">
+                <span class="option-pill" style="cursor:default;">Jambi</span>
+            </div>
+        </div>
+        <footer>
+            <p class="copyright">© 2026 NURSAH MUA · JAMBI</p>
+        </footer>
+    </main>
+
+    <!-- BOOKING BOTTOM SHEET -->
+    <div id="service-sheet">
+        <div style="width: 40px; height: 4px; background: #333; margin: 0 auto 30px; border-radius: 10px;"></div>
+        <h2 style="font-family: var(--serif); font-size: 1.8rem; margin-bottom: 6px;" data-i18n="book_title">Pesan Sesi</h2>
+        <p style="font-size: 12px; opacity: 0.6; margin-bottom: 24px;" data-i18n="book_sub">Saya akan merespon dalam 24 jam untuk konfirmasi.</p>
+
+        <div class="booking-form">
+            <div class="form-group">
+                <label data-i18n="form_name">Nama Lengkap</label>
+                <input type="text" id="book-name" placeholder="Nama Anda">
+            </div>
+            <div class="form-group">
+                <label data-i18n="form_service">Layanan</label>
+                <select id="book-service">
+                    <option>Rias Pengantin</option>
+                    <option>Trial Pengantin</option>
+                    <option>Rias Akad Nikah</option>
+                    <option>Rias Resepsi</option>
+                    <option>Mandi Bunga / Siraman</option>
+                    <option>Pengajian / Siraman</option>
+                    <option>Rias Wisuda</option>
+                    <option>Rias Pre-Wedding</option>
+                    <option>Rias Pesta / Glam</option>
+                    <option>Rias Soft / Natural</option>
+                    <option>Editorial / Photoshoot</option>
+                    <option>Kelas Pribadi (1-on-1)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label data-i18n="form_event">Jenis Acara</label>
+                <select id="book-event">
+                    <option>Akad Nikah</option>
+                    <option>Resepsi</option>
+                    <option>Akad + Resepsi</option>
+                    <option>Pemberkatan</option>
+                    <option>Pesta Ulang Tahun</option>
+                    <option>Photoshoot / Editorial</option>
+                    <option>Wisuda</option>
+                    <option>Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label data-i18n="form_date">Tanggal Acara</label>
+                <input type="date" id="book-date">
+            </div>
+            <div class="form-group">
+                <label data-i18n="form_location">Lokasi Acara</label>
+                <input type="text" id="book-location" placeholder="Kota / Gedung / Alamat">
+            </div>
+            <div class="form-group">
+                <label data-i18n="form_travel">Butuh Akomodasi Perjalanan?</label>
+                <select id="book-travel">
+                    <option>Tidak — di Jambi saja</option>
+                    <option>Ya — di luar Jambi (Sumatera)</option>
+                    <option>Ya — Pulau Jawa / Bali</option>
+                    <option>Ya — Luar Negeri</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label data-i18n="form_whatsapp">No. WhatsApp</label>
+                <input type="tel" id="book-wa" placeholder="08xxx">
+            </div>
+            <div class="form-group">
+                <label data-i18n="form_notes">Catatan</label>
+                <textarea id="book-notes" placeholder="Ceritakan tentang konsep riasan Anda..."></textarea>
+            </div>
+            <button class="btn-main" onclick="confirmBooking()" data-i18n="btn_book">Pesan via WhatsApp</button>
+            <button class="btn-outline" onclick="toggleBooking()" data-i18n="btn_cancel">Batal</button>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <div class="lightbox-close" onclick="closeLightbox()">
+            <i data-lucide="x" style="width:20px;"></i>
+        </div>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-controls">
+            <div class="lightbox-nav" onclick="navLightbox(-1)">
+                <i data-lucide="chevron-left" style="width:20px;"></i>
+            </div>
+            <div class="lightbox-tag" id="lightbox-tag"></div>
+            <div class="lightbox-nav" onclick="navLightbox(1)">
+                <i data-lucide="chevron-right" style="width:20px;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS PANEL -->
+    <div id="settings-panel" onclick="if(event.target===this) closeSettings()">
+        <div class="sheet">
+            <div style="width: 40px; height: 4px; background: var(--border); margin: 0 auto 24px; border-radius: 10px;"></div>
+            <h2 style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 24px;" data-i18n="settings_title">Pengaturan</h2>
+
+            <div class="setting-group">
+                <h3 data-i18n="settings_theme">Tema Warna</h3>
+                <div class="theme-grid">
+                    <div class="theme-chip active" data-theme="dark" onclick="setTheme('dark')">
+                        <div class="swatch"></div>
+                        <div class="name" data-i18n="theme_noir">Noir</div>
+                    </div>
+                    <div class="theme-chip" data-theme="light" onclick="setTheme('light')">
+                        <div class="swatch"></div>
+                        <div class="name" data-i18n="theme_linen">Linen</div>
+                    </div>
+                    <div class="theme-chip" data-theme="kain-merah" onclick="setTheme('kain-merah')">
+                        <div class="swatch"></div>
+                        <div class="name" data-i18n="theme_kain_merah">Kain Merah</div>
+                    </div>
+                    <div class="theme-chip" data-theme="danau" onclick="setTheme('danau')">
+                        <div class="swatch"></div>
+                        <div class="name" data-i18n="theme_danau">Danau</div>
+                    </div>
+                    <div class="theme-chip" data-theme="hijau" onclick="setTheme('hijau')">
+                        <div class="swatch"></div>
+                        <div class="name" data-i18n="theme_riau">Riau</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <h3 data-i18n="settings_lang">Bahasa</h3>
+                <div class="option-row">
+                    <div class="option-pill active" data-lang="id" onclick="setLanguage('id')">Bahasa Indonesia</div>
+                    <div class="option-pill" data-lang="en" onclick="setLanguage('en')">English</div>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <h3 data-i18n="settings_prefs">Preferensi</h3>
+                <div class="setting-toggle">
+                    <div class="toggle-info">
+                        <div class="label" data-i18n="pref_haptics">Getaran</div>
+                        <div class="desc" data-i18n="pref_haptics_desc">Getar saat interaksi</div>
+                    </div>
+                    <div class="switch on" id="toggle-haptics" onclick="toggleSwitch(this, 'haptics')"></div>
+                </div>
+                <div class="setting-toggle">
+                    <div class="toggle-info">
+                        <div class="label" data-i18n="pref_motion">Kurangi Animasi</div>
+                        <div class="desc" data-i18n="pref_motion_desc">Nonaktifkan animasi</div>
+                    </div>
+                    <div class="switch" id="toggle-motion" onclick="toggleSwitch(this, 'motion')"></div>
+                </div>
+            </div>
+
+            <button class="btn-outline" style="margin-top: 16px;" onclick="closeSettings()" data-i18n="done">Selesai</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast"></div>
+
+    <!-- BACK TO TOP -->
+    <div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i data-lucide="arrow-up" style="width:20px;"></i>
+    </div>
+
+    <script>
+        // ============= STATE =============
+        const state = {
+            theme: localStorage.getItem('nursah_theme') || 'dark',
+            lang: localStorage.getItem('nursah_lang') || 'id',
+            haptics: localStorage.getItem('nursah_haptics') !== 'false',
+            motion: localStorage.getItem('nursah_motion') === 'true',
+            favorites: JSON.parse(localStorage.getItem('nursah_favs') || '[]'),
+            lightboxIdx: 0
+        };
+
+        // i18n strings
+        const i18n = {
+            id: {
+                settings_title: 'Pengaturan',
+                settings_theme: 'Tema Warna',
+                settings_lang: 'Bahasa',
+                settings_currency: 'Mata Uang',
+                settings_prefs: 'Preferensi',
+                pref_haptics: 'Getaran',
+                pref_haptics_desc: 'Getar saat interaksi',
+                pref_motion: 'Kurangi Animasi',
+                pref_motion_desc: 'Nonaktifkan animasi',
+                done: 'Selesai',
+                search_ph: 'Cari layanan...',
+                book_title: 'Pesan Sesi',
+                book_sub: 'Saya akan merespon dalam 24 jam untuk konfirmasi.',
+                featured_title: 'Tampilan <span>Unggulan</span>',
+                reviews_title: 'Kata <span>Mereka</span>',
+                gallery_title: 'Galeri <span>Kami</span>',
+                gallery_sub: 'Koleksi riasan pengantin, editorial, &amp; kecantikan.',
+                services_title: 'Layanan <span>Kami</span>',
+                services_sub: 'Setiap sesi dimulai dengan konsultasi &amp; analisis kulit untuk hasil terbaik sesuai kebutuhan Anda.',
+                products_title: 'Produk <span>Kami</span>',
+                products_coming_soon: 'Coming Soon',
+                products_desc: 'Saat ini belum ada produk yang ditampilkan. Stay tuned untuk update terbaru dari Nursah MUA.',
+                no_services: 'Tidak ada layanan ditemukan',
+                hero_tag: 'Pengantin · Editorial · Kecantikan',
+                hero_sub: 'Menghadirkan wajah memesona untuk momen terpenting. Berbasis di Jambi, siap meluncur ke seluruh Indonesia &amp; luar negeri.',
+                hero_luxe_title: 'Layanan Unggulan',
+                hero_luxe_sub: 'Lihat Menu',
+                stat_exp: 'Pengalaman',
+                stat_exp_sub: 'Tahun berkarya',
+                stat_brides: 'Klien',
+                stat_brides_short: 'Pengantin',
+                stat_cities: 'Kota',
+                stat_years: 'Tahun',
+                about_role: 'MUA Utama &amp; Pendiri',
+                about_bio: 'Berasal dari Jambi, Sumatera. Terlatih di Jakarta &amp; Kuala Lumpur. Filosofi kami: mempercantik, bukan menutupi.',
+                travel_badge: 'Berbasis di Jambi',
+                areas_title: 'Area Layanan',
+                contact_title: 'Hubungi Saya',
+                stat_loyal: 'Setia',
+                btn_book: 'Pesan via WhatsApp',
+                wa_about_msg: 'Halo Kak Nursah, saya ingin bertanya mengenai layanan makeup. Apakah saat ini tersedia untuk tanggal ... ?',
+                btn_cancel: 'Batal',
+                form_required: 'Nama &amp; tanggal wajib diisi',
+                form_booking_ok: 'Pesanan terkirim ✓',
+                loader_welcome: 'Selamat Datang di',
+                loader_tagline: 'Mempersiapkan kecantikan Anda...',
+                theme_noir: 'Noir',
+                theme_linen: 'Linen',
+                theme_kain_merah: 'Kain Merah',
+                theme_danau: 'Danau',
+                theme_riau: 'Riau',
+                wa_msg: (d) => `💄✨ *BOOKING BARU — NURSAH MUA* ✨💄\n` +
+`━━━━━━━━━━━━━━━━━━━\n` +
+`Halo Kak Nursah! 🌸\n` +
+`Saya ingin melakukan booking untuk sesi makeup. 💕\n` +
+`\n` +
+`👤 *Nama*  : ${d.name}\n` +
+`📞 *WhatsApp* : ${d.wa || '-'}\n` +
+`✨ *Layanan*  : ${d.service}\n` +
+`🎉 *Acara*    : ${d.event}\n` +
+`📅 *Tanggal*  : ${d.date}\n` +
+`📍 *Lokasi*   : ${d.location}\n` +
+`✈️ *Perjalanan* : ${d.travel}\n` +
+`\n` +
+`${d.notes ? '📝 *Catatan*  :\n' + d.notes + '\n' : ''}` +
+`━━━━━━━━━━━━━━━━━━━\n` +
+`Mohon konfirmasinya ya Kak, terima kasih banyak! 🙏\n` +
+`🌹 _Dikirim dari website Nursah MUA_`
+            },
+            en: {
+                settings_title: 'Settings',
+                settings_theme: 'Theme',
+                settings_lang: 'Language',
+                settings_currency: 'Currency',
+                settings_prefs: 'Preferences',
+                pref_haptics: 'Haptic feedback',
+                pref_haptics_desc: 'Vibrate on interactions',
+                pref_motion: 'Reduce motion',
+                pref_motion_desc: 'Disable animations',
+                done: 'Done',
+                search_ph: 'Search services...',
+                book_title: 'Book a Session',
+                book_sub: "I'll respond within 24 hours to confirm.",
+                featured_title: 'Featured <span>Looks</span>',
+                reviews_title: 'Client <span>Words</span>',
+                gallery_title: 'Our <span>Gallery</span>',
+                gallery_sub: 'Bridal, editorial, &amp; beauty work.',
+                services_title: 'Our <span>Services</span>',
+                services_sub: 'Each session starts with skin analysis &amp; consultation to bring out your best look.',
+                products_title: 'Our <span>Products</span>',
+                products_coming_soon: 'Coming Soon',
+                products_desc: "No products are listed here yet. Stay tuned for updates from Nursah MUA.",
+                no_services: 'No services found',
+                hero_tag: 'Bridal · Editorial · Beauty',
+                hero_sub: 'Crafting faces for life\'s most luminous moments. Based in Jambi, available across Indonesia &amp; abroad.',
+                hero_luxe_title: 'Based on Jambi, Indonesia',
+                hero_luxe_sub: 'Explore Menu',
+                stat_exp: 'Experience',
+                stat_exp_sub: 'Years of artistry',
+                stat_brides: 'Clients',
+                stat_brides_short: 'Clients',
+                stat_cities: 'Cities',
+                stat_years: 'Years',
+                about_role: 'Lead Artist &amp; Founder',
+                about_bio: 'From Jambi, Sumatra. Trained in Jakarta &amp; Kuala Lumpur. Our philosophy: enhance, never mask.',
+                travel_badge: 'Based in Jambi',
+                areas_title: 'Service Areas',
+                contact_title: 'Contact Me',
+                stat_loyal: 'Loyal',
+                btn_book: 'Book via WhatsApp',
+                wa_about_msg: "Hi Nursah, I'd like to enquire about your makeup services. Are you available on ... ?",
+                btn_cancel: 'Cancel',
+                form_required: 'Name &amp; date required',
+                form_booking_ok: 'Booking sent ✓',
+                loader_welcome: 'Welcome to',
+                loader_tagline: 'Preparing your beauty experience...',
+                theme_noir: 'Noir',
+                theme_linen: 'Linen',
+                theme_kain_merah: 'Red Cloth',
+                theme_danau: 'Lake',
+                theme_riau: 'Riau',
+                wa_msg: (d) => `💄✨ *NEW BOOKING — NURSAH MUA* ✨💄\n` +
+`━━━━━━━━━━━━━━━━━━━\n` +
+`Hi Nursah! 🌸\n` +
+`I'd love to book a makeup session. 💕\n` +
+`\n` +
+`👤 *Name*  : ${d.name}\n` +
+`📞 *WhatsApp* : ${d.wa || '-'}\n` +
+`✨ *Service*  : ${d.service}\n` +
+`🎉 *Event*    : ${d.event}\n` +
+`📅 *Date*  : ${d.date}\n` +
+`📍 *Location* : ${d.location}\n` +
+`✈️ *Travel* : ${d.travel}\n` +
+`\n` +
+`${d.notes ? '📝 *Notes*  :\n' + d.notes + '\n' : ''}` +
+`━━━━━━━━━━━━━━━━━━━\n` +
+`Please confirm when you can — thank you so much! 🙏\n` +
+`🌹 _Sent from the Nursah MUA website_`
+            }
+        };
+
+        // ============= SERVICES =============
+        const services = [
+            { name_id: 'Rias Pengantin Akad + Resepsi', name_en: 'Bridal Akad + Reception', desc_id: 'Dua hari acara, full service, produk premium', desc_en: 'Two-day event, full service, premium products', icon: 'crown' },
+            { name_id: 'Rias Akad Nikah', name_en: 'Akad Nikah Makeup', desc_id: 'Rias pagi, tahan lama, natural-menawan', desc_en: 'Morning ceremony, long-lasting', icon: 'sun' },
+            { name_id: 'Rias Resepsi', name_en: 'Reception Makeup', desc_id: 'Glam malam, tahan 8+ jam, anti luntur', desc_en: 'Evening glam, 8+ hour wear', icon: 'moon' },
+            { name_id: 'Mandi Bunga / Siraman', name_en: 'Siraman / Mandi Bunga', desc_id: 'Rias adat untuk ritual mandi bunga', desc_en: 'Traditional look for siraman', icon: 'flower' },
+            { name_id: 'Pengajian / Henna Night', name_en: 'Pre-Wedding Henna', desc_id: 'Rias untuk acara henna &amp; pengajian', desc_en: 'Look for henna night &amp; religious gathering', icon: 'heart' },
+            { name_id: 'Rias Wisuda', name_en: 'Graduation Makeup', desc_id: 'Fresh, rapi, foto-friendly untuk toga', desc_en: 'Fresh, polished, photo-friendly', icon: 'graduation-cap' },
+            { name_id: 'Rias Pre-Wedding', name_en: 'Pre-Wedding Shoot', desc_id: 'Tahan lama, camera-ready, include retouch', desc_en: 'Long-wear, camera-ready, includes touch-up', icon: 'camera' },
+            { name_id: 'Rias Pesta / Glam', name_en: 'Party / Glam Makeup', desc_id: 'Bold, smokey, sculpted untuk acara malam', desc_en: 'Bold smokey for evening events', icon: 'sparkles' },
+            { name_id: 'Rias Soft / Natural', name_en: 'Soft / Natural Makeup', desc_id: 'Tampil segar, glowing, no-makeup look', desc_en: 'Fresh, glowing, no-makeup look', icon: 'leaf' },
+            { name_id: 'Rias Ibu Pengantin', name_en: 'Mother of Bride', desc_id: 'Elegan, anggun, age-appropriate', desc_en: 'Elegant, age-appropriate, graceful', icon: 'users' },
+            { name_id: 'Rias Adat Jambi', name_en: 'Jambi Traditional Look', desc_id: 'Melayu Jambi + siginjai / kunci merah', desc_en: 'Jambi Malay bridal with siginjai', icon: 'gem' },
+            { name_id: 'Kelas Makeup Pribadi', name_en: 'Private Makeup Lesson', desc_id: 'Belajar rias sendiri, 3-4 jam, modul PDF', desc_en: 'Learn to do your own, 3-4 hrs, PDF', icon: 'book-open' }
+        ];
+
+        // ============= PORTFOLIO =============
+        const portfolio = [
+            { img: './img/portfolio/portfolio-1.jpeg?w=800', tag_id: 'Marriage', tag_en: 'Bridal' },
+            { img: './img/portfolio/portfolio-2.jpeg?w=800', tag_id: 'Glam', tag_en: 'Glam' },
+            { img: './img/portfolio/portfolio-3.jpeg?w=800', tag_id: 'Soft', tag_en: 'Soft' },
+            { img: './img/portfolio/portfolio-4.jpeg?w=800', tag_id: 'Editorial', tag_en: 'Editorial' },
+        ];
+
+        // ============= HELPERS =============
+        function t(key) {
+            return (i18n[state.lang] && i18n[state.lang][key]) || i18n.id[key] || i18n.en[key] || key;
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        function haptic(ms = 30) {
+            if (state.haptics && navigator.vibrate) navigator.vibrate(ms);
+        }
+
+        // ============= THEME =============
+        const themeLabels = {
+            dark: 'Noir',
+            light: 'Linen',
+            'kain-merah': 'Kain Merah',
+            danau: 'Danau',
+            hijau: 'Riau'
+        };
+        function setTheme(theme) {
+            state.theme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('nursah_theme', theme);
+            document.querySelectorAll('.theme-chip').forEach(c => c.classList.toggle('active', c.dataset.theme === theme));
+            haptic(20);
+            showToast(themeLabels[theme] || theme);
+        }
+
+        // ============= LANGUAGE =============
+        function setLanguage(lang) {
+            state.lang = lang;
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('nursah_lang', lang);
+            document.querySelectorAll('[data-lang]').forEach(c => c.classList.toggle('active', c.dataset.lang === lang));
+            applyTranslations();
+            haptic(20);
+            showToast(lang === 'en' ? 'English' : 'Bahasa Indonesia');
+        }
+
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerHTML = t(key);
+            });
+            const searchInput = document.getElementById('service-search');
+            if (searchInput) searchInput.placeholder = t('search_ph');
+            const aboutWa = document.getElementById('about-wa-link');
+            if (aboutWa) aboutWa.href = 'https://wa.me/6289624391266?text=' + encodeURIComponent(t('wa_about_msg'));
+            // Re-render dynamic content
+            if (document.getElementById('page-services').classList.contains('active-page')) renderServices();
+            if (document.getElementById('page-portfolio').classList.contains('active-page')) renderPortfolio();
+            // Sync language pill active state
+            document.querySelectorAll('.lang-pill').forEach(c => c.classList.toggle('active', c.dataset.lang === state.lang));
+            document.querySelectorAll('.lang-pill').forEach(c => {
+                if (c.classList.contains('active')) {
+                    c.style.background = 'var(--accent)';
+                    c.style.color = '#fff';
+                } else {
+                    c.style.background = 'transparent';
+                    c.style.color = 'var(--primary-mute)';
+                }
+            });
+        }
+
+        // ============= SETTINGS =============
+        function openSettings() {
+            document.getElementById('settings-panel').classList.add('active');
+            haptic(20);
+        }
+        function closeSettings() {
+            document.getElementById('settings-panel').classList.remove('active');
+        }
+
+        function toggleSwitch(el, key) {
+            el.classList.toggle('on');
+            const isOn = el.classList.contains('on');
+            state[key] = isOn;
+            localStorage.setItem(`nursah_${key}`, isOn);
+            if (key === 'motion') {
+                document.body.style.setProperty('--motion', isOn ? '1' : '0');
+            }
+            haptic(20);
+        }
+
+        // ============= PAGE NAVIGATION =============
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+
+            const pageEl = document.getElementById(`page-${page}`);
+            if (pageEl) pageEl.classList.add('active-page');
+
+            const tabEl = document.getElementById(`tab-${page}`);
+            if (tabEl) tabEl.classList.add('active');
+
+            if (page === 'services') renderServices();
+            if (page === 'portfolio') renderPortfolio();
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            haptic(20);
+        }
+
+        // ============= RENDER SERVICES =============
+        function getLocalized(s, field) {
+            if (state.lang === 'en') return s[field + '_en'] || s[field + '_id'];
+            return s[field + '_id'] || s[field + '_en'];
+        }
+
+        function renderServices(filter = '') {
+            const container = document.getElementById('service-list');
+            const filtered = services.filter(s => {
+                const name = getLocalized(s, 'name');
+                const desc = getLocalized(s, 'desc');
+                return (name + ' ' + desc).toLowerCase().includes(filter.toLowerCase());
+            });
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding: 40px 20px; opacity: 0.5; font-size: 13px;">${t('no_services')}</div>`;
+                return;
+            }
+            container.innerHTML = filtered.map((s) => {
+                const idx = services.indexOf(s);
+                const isFav = state.favorites.includes(s.name_id);
+                const name = getLocalized(s, 'name');
+                const desc = getLocalized(s, 'desc');
+                return `
+                <div class="service-card">
+                    <div class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${s.name_id}', event)">
+                        <i data-lucide="heart" style="width:14px; ${isFav ? 'fill: currentColor;' : ''}"></i>
+                    </div>
+                    <div class="service-icon" onclick="selectService(${idx})" style="cursor:pointer;">
+                        <i data-lucide="${s.icon}" style="width:22px;"></i>
+                    </div>
+                    <div class="service-info" onclick="selectService(${idx})" style="cursor:pointer;">
+                        <h4>${name}</h4>
+                        <p>${desc}</p>
+                    </div>
+                </div>
+            `}).join('');
+            lucide.createIcons();
+        }
+
+        function filterServices() {
+            const q = document.getElementById('service-search').value;
+            renderServices(q);
+        }
+
+        function selectService(idx) {
+            const s = services[idx];
+            document.getElementById('book-service').value = getLocalized(s, 'name');
+            toggleBooking();
+            haptic(20);
+        }
+
+        function toggleFav(name, e) {
+            e.stopPropagation();
+            const idx = state.favorites.indexOf(name);
+            const added = idx > -1;
+            if (added) {
+                state.favorites.splice(idx, 1);
+            } else {
+                state.favorites.push(name);
+            }
+            localStorage.setItem('nursah_favs', JSON.stringify(state.favorites));
+            const favMsgs = {
+                id: { add: 'Ditambahkan ke favorit', remove: 'Dihapus dari favorit' },
+                en: { add: 'Added to favorites', remove: 'Removed from favorites' }
+            };
+            showToast((favMsgs[state.lang] || favMsgs.id)[added ? 'remove' : 'add']);
+            renderServices(document.getElementById('service-search').value);
+            haptic(40);
+        }
+
+        // ============= RENDER PORTFOLIO =============
+        function renderPortfolio() {
+            const container = document.getElementById('portfolio-grid');
+            container.innerHTML = portfolio.map((p, i) => {
+                const tag = getLocalized(p, 'tag');
+                return `
+                <div class="portfolio-item" onclick="openLightbox(${i})">
+                    <img src="${p.img}" loading="lazy">
+                    <div class="look-tag">${tag}</div>
+                </div>
+            `}).join('');
+        }
+
+        // ============= LIGHTBOX =============
+        function openLightbox(idx) {
+            state.lightboxIdx = idx;
+            const item = portfolio[idx];
+            document.getElementById('lightbox-img').src = item.img.replace('w=800', 'w=1600');
+            document.getElementById('lightbox-tag').textContent = getLocalized(item, 'tag');
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            haptic(20);
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function navLightbox(dir) {
+            state.lightboxIdx = (state.lightboxIdx + dir + portfolio.length) % portfolio.length;
+            openLightbox(state.lightboxIdx);
+        }
+
+        // ============= BOOKING =============
+        function toggleBooking() {
+            document.getElementById('service-sheet').classList.toggle('active');
+        }
+
+        function confirmBooking() {
+            const name = document.getElementById('book-name').value.trim();
+            const dateRaw = document.getElementById('book-date').value;
+            const service = document.getElementById('book-service').value;
+            const event = document.getElementById('book-event').value;
+            const location = document.getElementById('book-location').value.trim() || '-';
+            const travel = document.getElementById('book-travel').value;
+            const wa = document.getElementById('book-wa').value.trim();
+            const notes = document.getElementById('book-notes').value.trim();
+
+            if (!name || !dateRaw) {
+                showToast(t('form_required').replace(/&amp;/g, '&'));
+                haptic([50, 50, 50]);
+                return;
+            }
+
+            // Format date: "Senin, 12 Oktober 2026"
+            const months_id = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            const months_en = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            const days_id = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+            const days_en = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            const dObj = new Date(dateRaw + 'T00:00:00');
+            const dateFormatted = state.lang === 'id'
+                ? `${days_id[dObj.getDay()]}, ${dObj.getDate()} ${months_id[dObj.getMonth()]} ${dObj.getFullYear()}`
+                : dObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+            const data = { name, date: dateFormatted, service, event, location, travel, wa, notes };
+            const msg = encodeURIComponent(t('wa_msg')(data));
+            window.open(`https://wa.me/6289624391266?text=${msg}`, '_blank');
+            showToast(t('form_booking_ok'));
+            document.getElementById('book-name').value = '';
+            document.getElementById('book-date').value = '';
+            document.getElementById('book-location').value = '';
+            document.getElementById('book-notes').value = '';
+            document.getElementById('book-wa').value = '';
+            setTimeout(() => {
+                toggleBooking();
+                showPage('home');
+            }, 800);
+        }
+
+        // ============= BACK TO TOP =============
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('back-top');
+            if (window.scrollY > 400) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        });
+
+        // ============= KEYBOARD NAV =============
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navLightbox(-1);
+            if (e.key === 'ArrowRight') navLightbox(1);
+        });
+
+        // ============= INIT =============
+        function init() {
+            // Apply persisted state
+            setTheme(state.theme);
+            setLanguage(state.lang);
+            document.getElementById('toggle-haptics').classList.toggle('on', state.haptics);
+            document.getElementById('toggle-motion').classList.toggle('on', state.motion);
+            lucide.createIcons();
+
+            // Show intro loader only for first-time visitors; default language is Indonesian
+            const hasVisited = localStorage.getItem('nursah_visited');
+            const loader = document.getElementById('loader');
+            if (!hasVisited) {
+                localStorage.setItem('nursah_visited', '1');
+                setTimeout(() => {
+                    loader.classList.add('hide');
+                    setTimeout(() => loader.remove(), 700);
+                }, 1800);
+            } else {
+                loader.classList.add('hide');
+                setTimeout(() => loader.remove(), 700);
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
+
+
